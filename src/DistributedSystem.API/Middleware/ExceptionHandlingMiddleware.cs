@@ -18,9 +18,9 @@ internal sealed class ExceptionHandlingMiddleware : IMiddleware
         }
         catch (Exception e)
         {
-            _logger.LogError(e, e.Message);
+            _logger.LogError(e.ToString());
 
-            await HandleExceptionAsync(context, e);
+            await context.Response.WriteAsync(e.ToString());
         }
     }
 
